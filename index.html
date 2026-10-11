@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#780d20">
+    <meta name="description" content="A beautiful digital Nikah invitation for Minhaz weds Radia, 16 October 2026, Chittagong.">
+    <title>Nikah Invitation | Minhaz weds Radia</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --wine:#780d20;
+        --red:#a61e35;
+        --deep:#360712;
+        --gold:#bd9858;
+        --cream:#fffaf2;
+        --ink:#45121c;
+        --muted:#80636a;
+        --line:#e9d9c9;
+        --font-body:"Manrope",Arial,sans-serif;
+        --font-display:"Cormorant Garamond",Georgia,serif;
+        --font-heading:"Cinzel",Georgia,serif
+      }
+      *{
+        box-sizing:border-box
+      }
+      html{
+        scroll-behavior:smooth;
+        scroll-padding-top:24px
+      }
+      body{
+        margin:0;
+        background:#f8f0e8;
+        color:var(--ink);
+        font-family:var(--font-body);
+        overflow-x:hidden
+      }
+      button,a{
+        font:inherit
+      }
+      button{
+        cursor:pointer
+      }
+      .loader{
+        position:fixed;
+        inset:0;
+        z-index:20;
+        display:grid;
+        place-items:center;
+        padding:22px;
+        background:radial-gradient(ellipse at 50% 20%,#a72b40 0,#780d20 48%,#30040d 100%);
+        transition:opacity .8s,visibility .8s
+      }
+      .loader.hide{
+        opacity:0;
+        visibility:hidden;
+        pointer-events:none
+      }
+      .loader-inner{
+        text-align:center;
+        color:#fff9f0;
+        width:min(430px,100%)
+      }
+      .arabic{
+        font-family:Amiri,serif;
+        font-size:clamp(25px,5vw,35px);
+        line-height:1.8;
+        color:#f2d9a8;
+        direction:rtl
+      }
+      .loader-kicker{
+        font-size:10px;
+        letter-spacing:.32em;
+        text-transform:uppercase;
+        color:#e9cda2;
+        margin:4px 0 22px
+      }
+      .envelope-button{
+        display:block;
+        position:relative;
+        width:min(310px,80vw);
+        height:215px;
+        margin:0 auto 22px;
+        border:0;
+        background:transparent;
+        filter:drop-shadow(0 22px 24px #1b000a80);
+        perspective:900px
+      }
+      .envelope{
+        position:absolute;
+        inset:25px 0 0;
+        background:#f8e8df;
+        border:1px solid #e0bd7d;
+        border-radius:5px;
+        overflow:visible
+      }
+      .envelope:before{
+        content:'';
+        position:absolute;
+        inset:0;
+        background:linear-gradient(140deg,transparent 49.5%,#d8b5a8 50%,transparent 50.7%),linear-gradient(220deg,transparent 49.5%,#e6c9ba 50%,transparent 50.7%);
+        z-index:2
+      }
+      .envelope:after{
+        content:'';
+        position:absolute;
+        left:0;
+        right:0;
+        bottom:0;
+        height:70%;
+        background:#efd2c5;
+        clip-path:polygon(0 0,50% 68%,100% 0,100% 100%,0 100%);
+        z-index:3
+      }
+      .flap{
+        position:absolute;
+        left:-1px;
+        right:-1px;
+        top:-1px;
+        height:62%;
+        background:linear-gradient(135deg,#fff4e9,#e6bdad);
+        clip-path:polygon(0 0,100% 0,50% 100%);
+        transform-origin:top;
+        z-index:4;
+        transition:transform .85s cubic-bezier(.2,.7,.2,1)
+      }
+      .letter{
+        position:absolute;
+        left:12%;
+        width:76%;
+        height:76%;
+        top:2%;
+        background:#fffaf2;
+        border:1px solid var(--gold);
+        z-index:1;
+        display:grid;
+        place-items:center;
+        color:var(--wine);
+        transition:transform .85s ease
+      }
+      .letter span{
+        font-family:Amiri,serif;
+        font-size:28px;
+        border:1px solid var(--gold);
+        border-radius:50%;
+        width:56px;
+        height:56px;
+        display:grid;
+        place-items:center
+      }
+      .seal{
+        position:absolute;
+        z-index:5;
+        left:50%;
+        top:55%;
+        transform:translate(-50%,-50%);
+        width:46px;
+        height:46px;
+        border-radius:50%;
+        background:var(--wine);
+        border:2px solid #e2c27e;
+        color:#f9e5b8;
+        display:grid;
+        place-items:center;
+        font-size:19px;
+        transition:opacity .25s
+      }
+      .envelope-button.opening .flap{
+        transform:rotateX(180deg);
+        z-index:0
+      }
+      .envelope-button.opening .letter{
+        transform:translateY(-75px)
+      }
+      .envelope-button.opening .seal{
+        opacity:0
+      }
+      .tap-title{
+        font:600 clamp(34px,7vw,47px)/1.05 var(--font-heading);
+        letter-spacing:.08em;
+        text-transform:uppercase;
+        margin:0 0 12px
+      }
+      .tap-sub{
+        font-size:11px;
+        letter-spacing:.14em;
+        color:#f1d9d0
+      }
+      .tap-hint{
+        margin-top:24px;
+        color:#f2d39b;
+        font-size:10px;
+        letter-spacing:.24em;
+        text-transform:uppercase;
+        animation:pulse 1.7s infinite
+      }
+      .site{
+        opacity:0;
+        transform:translateY(18px);
+        transition:opacity .9s,transform .9s;
+        pointer-events:none
+      }
+      .site.show{
+        opacity:1;
+        transform:none;
+        pointer-events:auto
+      }
+      .topbar{
+        display:flex;
+        align-items:center;
+        justify-content:space-between;
+        gap:12px;
+        padding:18px clamp(18px,5vw,70px);
+        border-bottom:1px solid #ead9c7;
+        background:#fffaf4d9;
+        backdrop-filter:blur(14px)
+      }
+      .brand{
+        font:600 21px var(--font-heading);
+        color:var(--wine);
+        letter-spacing:.08em;
+        text-transform:uppercase
+      }
+      .brand small{
+        display:block;
+        font:9px var(--font-body);
+        letter-spacing:.22em;
+        text-transform:uppercase;
+        color:var(--muted);
+        margin-top:2px
+      }
+      .nav-tag{
+        font-size:10px;
+        letter-spacing:.15em;
+        text-transform:uppercase;
+        color:var(--wine)
+      }
+      .hero{
+        position:relative;
+        min-height:760px;
+        display:grid;
+        place-items:center;
+        padding:48px 20px 64px;
+        isolation:isolate;
+        overflow:hidden;
+        background:radial-gradient(ellipse at top,#fff9f0 0,#f3e5d7 65%,#ead3c2 100%)
+      }
+      .hero:before{
+        content:'';
+        position:absolute;
+        inset:18px;
+        border:1px solid #c8a66d;
+        pointer-events:none;
+        z-index:-1
+      }
+      .hero:after{
+        content:'✦';
+        position:absolute;
+        top:50px;
+        right:8%;
+        font-size:26px;
+        color:#c3a06a;
+        opacity:.65
+      }
+      .hero-card{
+        width:min(670px,100%);
+        min-height:760px;
+        position:relative;
+        display:grid;
+        place-items:center;
+        padding:30px 22px;
+        filter:drop-shadow(0 28px 32px #5a1b2520)
+      }
+      .art{
+        position:absolute;
+        inset:0;
+        width:100%;
+        height:100%;
+        object-fit:cover;
+        object-position:center;
+        border:1px solid #ead9c4
+      }
+      .art-shade{
+        position:absolute;
+        inset:0;
+        background:linear-gradient(180deg,rgba(255,250,244,.05),rgba(255,250,244,.27) 30%,rgba(255,250,244,.35) 70%,rgba(255,250,244,.05));
+        pointer-events:none
+      }
+      .hero-copy{
+        position:relative;
+        z-index:1;
+        text-align:center;
+        width:min(450px,100%);
+        padding:22px 14px 16px;
+        animation:rise 1s both
+      }
+      .hero-copy .arabic{
+        color:#8d1728;
+        font-size:clamp(27px,5vw,36px);
+        margin-bottom:2px;
+        text-shadow:0 1px #fff
+      }
+      .eyebrow{
+        font:600 9px var(--font-heading);
+        letter-spacing:.24em;
+        text-transform:uppercase;
+        color:#7b4b42;
+        margin:4px 0 12px
+      }
+      .hero h1{
+        font:600 clamp(38px,7vw,59px)/.98 var(--font-display);
+        letter-spacing:.03em;
+        color:#850e25;
+        margin:0 0 14px
+      }
+      .intro{
+        font:italic 16px/1.6 var(--font-display);
+        color:#6a3038;
+        max-width:330px;
+        margin:0 auto 17px
+      }
+      .names{
+        font:600 clamp(29px,6vw,41px)/1.12 var(--font-display);
+        letter-spacing:.02em;
+        color:#760d21;
+        margin:7px 0
+      }
+      .weds{
+        font:600 10px var(--font-heading);
+        letter-spacing:.28em;
+        text-transform:uppercase;
+        color:#a0783d;
+        margin:12px 0
+      }
+      .ornament{
+        color:#bd9858;
+        font:600 21px var(--font-display);
+        letter-spacing:.3em;
+        margin:14px 0
+      }
+      .hero-date{
+        font:600 18px var(--font-display);
+        color:#7d1023
+      }
+      .venue-mini{
+        font-size:12px;
+        line-height:1.8;
+        color:#5d2630;
+        margin-top:8px
+      }
+      .hero-note{
+        font:italic 14px 'Cormorant Garamond',serif;
+        color:#895b47;
+        margin-top:13px
+      }
+      .section{
+        padding:76px 20px
+      }
+      .section-head{
+        text-align:center;
+        max-width:620px;
+        margin:0 auto 34px
+      }
+      .section-kicker{
+        font:600 9px var(--font-heading);
+        letter-spacing:.28em;
+        text-transform:uppercase;
+        color:#a06e48
+      }
+      .section h2{
+        font:600 clamp(35px,6vw,49px)/1.1 var(--font-display);
+        letter-spacing:.02em;
+        color:var(--wine);
+        margin:9px 0 12px
+      }
+      .section-head p{
+        font-size:13px;
+        line-height:1.8;
+        color:var(--muted);
+        margin:0
+      }
+      .count-section{
+        background:var(--wine);
+        color:#fff7ee;
+        position:relative;
+        overflow:hidden
+      }
+      .count-section:before,.count-section:after{
+        content:'❧';
+        position:absolute;
+        color:#d6b57c;
+        font-size:110px;
+        opacity:.13
+      }
+      .count-section:before{
+        left:-12px;
+        top:12px
+      }
+      .count-section:after{
+        right:-12px;
+        bottom:-20px;
+        transform:rotate(180deg)
+      }
+      .count-section .section-kicker{
+        color:#e2c18a
+      }
+      .count-section h2{
+        color:#fff5e8
+      }
+      .count-section .section-head p{
+        color:#ead0d0
+      }
+      .countdown{
+        display:grid;
+        grid-template-columns:repeat(4,minmax(0,1fr));
+        gap:12px;
+        width:min(680px,100%);
+        margin:32px auto 0
+      }
+      .timebox{
+        border:1px solid #d9b77965;
+        background:#ffffff09;
+        padding:20px 8px 17px;
+        text-align:center;
+        backdrop-filter:blur(6px)
+      }
+      .timebox strong{
+        display:block;
+        font:600 clamp(32px,6vw,48px)/1 var(--font-display);
+        color:#f4d69c
+      }
+      .timebox span{
+        display:block;
+        font-size:9px;
+        letter-spacing:.18em;
+        text-transform:uppercase;
+        color:#f1dede;
+        margin-top:10px
+      }
+      .count-note{
+        text-align:center;
+        font-size:11px;
+        color:#e9c7c7;
+        margin-top:20px;
+        letter-spacing:.04em
+      }
+      .date-section{
+        background:#fffaf4
+      }
+      .date-layout{
+        display:grid;
+        grid-template-columns:minmax(0,360px) minmax(0,400px);
+        gap:32px;
+        align-items:center;
+        justify-content:center
+      }
+      .calendar{
+        background:#fff;
+        border:1px solid #e7d4bf;
+        box-shadow:0 20px 45px #55102010;
+        overflow:hidden;
+        transform:rotate(-1deg);
+        max-width:360px;
+        width:100%;
+        margin:auto
+      }
+      .calendar-top{
+        background:var(--wine);
+        color:#fff5e9;
+        text-align:center;
+        padding:17px
+      }
+      .calendar-top span{
+        font-size:9px;
+        letter-spacing:.24em;
+        text-transform:uppercase
+      }
+      .calendar-top strong{
+        display:block;
+        font:600 30px var(--font-display);
+        margin-top:4px
+      }
+      .calendar-body{
+        padding:20px
+      }
+      .weekdays,.days{
+        display:grid;
+        grid-template-columns:repeat(7,1fr);
+        text-align:center;
+        gap:6px
+      }
+      .weekdays{
+        font-size:9px;
+        color:#a18a7a;
+        margin-bottom:12px
+      }
+      .days span{
+        display:grid;
+        place-items:center;
+        aspect-ratio:1;
+        border-radius:50%;
+        font-size:12px;
+        color:#60444a
+      }
+      .days .blank{
+        visibility:hidden
+      }
+      .days .chosen{
+        background:var(--wine);
+        color:#fff6e7;
+        outline:2px solid #d4b77c;
+        outline-offset:3px;
+        box-shadow:0 5px 12px #780d2030
+      }
+      .calendar-bottom{
+        border-top:1px solid #f0e3d6;
+        padding:14px;
+        text-align:center;
+        font:italic 15px var(--font-display);
+        color:var(--wine)
+      }
+      .date-copy{
+        padding:8px 0
+      }
+      .date-copy h3{
+        font:600 34px var(--font-display);
+        color:var(--wine);
+        margin:8px 0
+      }
+      .date-copy p{
+        font-size:13px;
+        line-height:1.9;
+        color:var(--muted)
+      }
+      .date-pill{
+        display:inline-flex;
+        gap:8px;
+        align-items:center;
+        border:1px solid #dfc7a7;
+        border-radius:99px;
+        padding:10px 15px;
+        color:var(--wine);
+        font-size:11px;
+        margin-top:10px
+      }
+      .location-section{
+        background:#f0e3d8
+      }
+      .location-card{
+        display:grid;
+        grid-template-columns:1fr 1fr;
+        max-width:1000px;
+        margin:auto;
+        background:#fffaf4;
+        border:1px solid #e4d1bd;
+        box-shadow:0 22px 55px #48101b0c
+      }
+      .location-copy{
+        padding:clamp(25px,5vw,48px);
+        display:flex;
+        flex-direction:column;
+        justify-content:center
+      }
+      .location-copy .arabic{
+        color:var(--wine);
+        font-size:27px
+      }
+      .location-copy h3{
+        font:600 34px var(--font-display);
+        color:var(--wine);
+        margin:9px 0
+      }
+      .location-copy p{
+        font-size:13px;
+        line-height:1.9;
+        color:var(--muted)
+      }
+      .map{
+        min-height:350px;
+        width:100%;
+        height:100%;
+        border:0;
+        filter:saturate(.75)
+      }
+      .btn-row{
+        display:flex;
+        flex-wrap:wrap;
+        gap:10px;
+        margin-top:17px
+      }
+      .btn{
+        display:inline-flex;
+        justify-content:center;
+        align-items:center;
+        gap:8px;
+        border:1px solid var(--wine);
+        background:var(--wine);
+        color:#fff8ee;
+        text-decoration:none;
+        border-radius:2px;
+        padding:12px 17px;
+        font-size:10px;
+        letter-spacing:.1em;
+        text-transform:uppercase;
+        transition:transform .2s,background .2s
+      }
+      .btn:hover{
+        transform:translateY(-2px);
+        background:#520817
+      }
+      .btn.outline{
+        background:transparent;
+        color:var(--wine)
+      }
+      .closing{
+        background:#fffaf4;
+        text-align:center;
+        padding:65px 20px 72px
+      }
+      .closing .arabic{
+        color:var(--wine);
+        font-size:clamp(29px,5vw,39px)
+      }
+      .closing h2{
+        font:600 42px var(--font-display);
+        color:var(--wine);
+        margin:5px 0 12px
+      }
+      .closing p{
+        font:italic 17px var(--font-display);
+        color:#87615b
+      }
+      .closing .names{
+        font-size:27px
+      }
+      .footer{
+        padding:19px;
+        text-align:center;
+        background:#340610;
+        color:#e9d3c5;
+        font-size:9px;
+        letter-spacing:.16em;
+        text-transform:uppercase
+      }
+      .petal{
+        position:fixed;
+        top:-25px;
+        width:10px;
+        height:14px;
+        background:#a51a31;
+        border-radius:90% 0 90% 0;
+        opacity:.5;
+        z-index:4;
+        pointer-events:none;
+        animation:fall linear infinite
+      }
+      .hidden{
+        display:none!important
+      }
+      @keyframes fall{
+        to{
+          transform:translate3d(55px,110vh,0) rotate(620deg)
+        }
+      }
+      @keyframes pulse{
+        50%{
+          opacity:.45;
+          letter-spacing:.3em
+        }
+      }
+      @keyframes rise{
+        from{
+          opacity:0;
+          transform:translateY(18px)
+        }
+        to{
+          opacity:1;
+          transform:translateY(0)
+        }
+      }
+      @media(max-width:700px){
+        .hero{
+          padding:22px 12px 32px;
+          min-height:auto
+        }
+        .hero-card{
+          min-height:720px;
+          padding:18px 12px
+        }
+        .hero-copy{
+          padding:15px 9px
+        }
+        .date-layout{
+          grid-template-columns:1fr;
+          gap:26px
+        }
+        .date-copy{
+          max-width:450px;
+          margin:auto;
+          text-align:center
+        }
+        .location-card{
+          grid-template-columns:1fr
+        }
+        .map{
+          min-height:310px;
+          grid-row:1
+        }
+        .location-copy{
+          text-align:center
+        }
+        .location-copy .btn-row{
+          justify-content:center
+        }
+        .section{
+          padding:58px 17px
+        }
+        .topbar{
+          padding:14px 18px
+        }
+        .brand{
+          font-size:19px
+        }
+        .nav-tag{
+          font-size:8px
+        }
+        .countdown{
+          gap:7px
+        }
+        .timebox{
+          padding:17px 3px
+        }
+        .timebox span{
+          font-size:8px;
+          letter-spacing:.1em
+        }
+        .calendar{
+          transform:none
+        }
+      }
+      @media(max-width:390px){
+        .hero-card{
+          min-height:680px
+        }
+        .hero-copy .arabic{
+          font-size:25px
+        }
+        .hero h1{
+          font-size:36px
+        }
+        .names{
+          font-size:27px
+        }
+        .countdown{
+          gap:5px
+        }
+        .timebox strong{
+          font-size:30px
+        }
+        .timebox span{
+          font-size:7px
+        }
+      }
+      @media(prefers-reduced-motion:reduce){
+        *,*::before,*::after{
+          animation-duration:.01ms!important;
+          animation-iteration-count:1!important;
+          scroll-behavior:auto!important;
+          transition-duration:.01ms!important
+        }
+      }
+      .greeting-section{
+        padding:78px 20px;
+        background:linear-gradient(145deg,#fffaf4,#f1e1d6);
+        position:relative;
+        overflow:hidden
+      }
+      .greeting-section:before{
+        content:'';
+        position:absolute;
+        left:-15px;
+        top:18px;
+        font-size:115px;
+        color:#bd9858;
+        opacity:.12;
+        transform:rotate(-25deg)
+      }
+      .greeting-grid{
+        width:min(940px,100%);
+        margin:0 auto;
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:20px
+      }
+      .greeting-card{
+        position:relative;
+        text-align:center;
+        padding:clamp(25px,4vw,42px) clamp(20px,3vw,32px);
+        background:#fffdf9;
+        border:1px solid #ddc39b;
+        box-shadow:0 18px 42px #4b0c1a0d
+      }
+      .greeting-card:before{
+        content:'';
+        position:absolute;
+        inset:7px;
+        border:1px solid #eadbc6;
+        pointer-events:none
+      }
+      .greeting-card .arabic{
+        font-size:27px;
+        color:var(--wine);
+        position:relative
+      }
+      .greeting-icon{
+        font-size:25px;
+        color:var(--gold);
+        margin:10px 0 6px
+      }
+      .greeting-role{
+        font:600 9px var(--font-heading);
+        letter-spacing:.25em;
+        text-transform:uppercase;
+        color:#9a704e;
+        margin:0 0 8px
+      }
+      .greeting-card h3{
+        font:600 clamp(26px,4vw,34px)/1.1 var(--font-display);
+        color:var(--wine);
+        margin:0 0 15px;
+        position:relative
+      }
+      .greeting-card p{
+        font:italic 16px/1.85 var(--font-display);
+        color:#73545a;
+        margin:0;
+        position:relative
+      }
+      .greeting-signoff{
+        margin-top:20px!important;
+        color:var(--wine)!important;
+        font-style:normal!important;
+        font-size:13px!important;
+        letter-spacing:.04em
+      }
+      @media(max-width:650px){
+        .greeting-grid{
+          grid-template-columns:1fr
+        }
+        .greeting-section{
+          padding:58px 17px
+        }
+      }
+      /* Premium named envelope treatment */
+      .loader{
+        background:radial-gradient(ellipse at 50% 17%,#a93245 0%,#720d20 48%,#26030b 100%)
+      }
+      .loader:before{
+        content:"";
+        position:absolute;
+        inset:14px;
+        border:1px solid #d5b579;
+        opacity:.6;
+        pointer-events:none
+      }
+      .loader:after{
+        content:"✦";
+        position:absolute;
+        top:30px;
+        left:50%;
+        transform:translateX(-50%);
+        font-size:15px;
+        color:#e8cc94;
+        opacity:.9
+      }
+      .loader-inner{
+        position:relative;
+        z-index:1;
+        width:min(470px,100%)
+      }
+      .loader-inner>.arabic{
+        font-size:clamp(27px,5vw,36px);
+        text-shadow:0 2px 14px #26030b55;
+        margin-bottom:2px
+      }
+      .loader-kicker{
+        margin:2px 0 15px;
+        font-size:9px;
+        letter-spacing:.34em;
+        color:#e8cb98
+      }
+      .envelope-button{
+        width:min(350px,84vw);
+        height:246px;
+        margin:0 auto 23px;
+        filter:drop-shadow(0 26px 28px #18000870);
+        transition:transform .35s ease,filter .35s ease;
+        outline-offset:8px
+      }
+      .envelope-button:hover{
+        transform:translateY(-5px);
+        filter:drop-shadow(0 32px 30px #18000885)
+      }
+      .envelope{
+        inset:25px 0 0;
+        border:1px solid #d8b66f;
+        border-radius:4px;
+        background:linear-gradient(145deg,#fff6eb 0%,#f2d9c9 55%,#e6c1b0 100%);
+        box-shadow:inset 0 0 0 5px #fff7ed,inset 0 0 0 6px #d8b66f;
+        overflow:visible
+      }
+      .envelope:before{
+        background:linear-gradient(140deg,transparent 49.3%,#d8b7a6 49.8%,#f7e4d6 50.4%,transparent 51%),linear-gradient(220deg,transparent 49.3%,#d2ac9c 49.8%,#f8e5d7 50.4%,transparent 51%)
+      }
+      .envelope:after{
+        background:linear-gradient(155deg,#f8e3d5,#e8c5b6);
+        filter:drop-shadow(0 -1px 0 #d8b66f)
+      }
+      .flap{
+        background:linear-gradient(135deg,#fff8ef 0%,#f0d4c4 72%,#e4bdac 100%);
+        filter:drop-shadow(0 1px 0 #d9b66e)
+      }
+      .letter{
+        left:14%;
+        width:72%;
+        height:78%;
+        top:1%;
+        background:linear-gradient(145deg,#fffdf7,#f9eddf);
+        border:1px solid #c7a25f;
+        box-shadow:inset 0 0 0 4px #fffaf2,inset 0 0 0 5px #e4c98f;
+        z-index:1
+      }
+      .letter span{
+        width:62px;
+        height:62px;
+        border:1px solid #c9a45f;
+        color:#8a172a;
+        font-family:Amiri,serif;
+        font-size:20px;
+        line-height:1.05;
+        text-align:center;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        background:#fffaf2;
+        box-shadow:0 3px 12px #6c152015
+      }
+      .envelope-label{
+        position:absolute;
+        z-index:4;
+        left:7%;
+        right:7%;
+        bottom:18px;
+        min-height:75px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        padding:8px 8px 6px;
+        text-align:center;
+        background:linear-gradient(180deg,#fff7edeb,#f5dfd1ed);
+        border:1px solid #d0ad6b;
+        box-shadow:0 4px 13px #68203317;
+        pointer-events:none
+      }
+      .envelope-label:before{
+        content:"";
+        position:absolute;
+        inset:4px;
+        border:1px solid #d8bf8d;
+        pointer-events:none
+      }
+      .envelope-label-kicker{
+        font-size:7px;
+        letter-spacing:.29em;
+        color:#9c6e43;
+        margin-bottom:2px
+      }
+      .envelope-label strong{
+        font:600 clamp(22px,5vw,28px)/1.03 'Cormorant Garamond',serif;
+        letter-spacing:.015em;
+        color:#781126;
+        white-space:nowrap
+      }
+      .envelope-label strong i{
+        font-style:italic;
+        font-weight:400;
+        color:#b28a4b;
+        padding:0 2px
+      }
+      .envelope-label small{
+        font:500 8px Manrope,sans-serif;
+        letter-spacing:.27em;
+        color:#8c5c45;
+        margin-top:5px
+      }
+      .seal{
+        z-index:6;
+        top:51%;
+        width:43px;
+        height:43px;
+        border:1px solid #f2d79b;
+        outline:1px solid #a57937;
+        outline-offset:3px;
+        background:radial-gradient(circle at 35% 28%,#a52b40,#690a1b 72%);
+        color:#f5d9a0;
+        font-size:18px;
+        box-shadow:0 5px 12px #4b081a45
+      }
+      .envelope-button.opening .envelope-label{
+        opacity:0;
+        transition:opacity .2s ease
+      }
+      .tap-title{
+        font-size:clamp(36px,7vw,49px);
+        letter-spacing:.01em;
+        text-shadow:0 2px 20px #25020a25;
+        margin-bottom:9px
+      }
+      .tap-sub{
+        font-size:10px;
+        letter-spacing:.1em;
+        color:#f4e1d9;
+        line-height:1.9
+      }
+      .tap-amp{
+        color:#e6c17c;
+        padding:0 5px;
+        font-family:var(--font-display);
+        font-size:17px
+      }
+      .tap-hint{
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        gap:10px;
+        margin-top:22px;
+        color:#f1d39c;
+        font-size:9px;
+        letter-spacing:.2em;
+        text-transform:uppercase;
+        animation:pulse 1.7s infinite
+      }
+      .hint-spark{
+        font-size:14px;
+        color:#e7c27e
+      }
+      @media(max-width:420px){
+        .envelope-button{
+          height:225px;
+          width:min(320px,84vw)
+        }
+        .envelope-label{
+          bottom:14px
+        }
+        .envelope-label strong{
+          font-size:22px
+        }
+        .tap-sub{
+          max-width:290px;
+          margin:auto;
+          line-height:2
+        }
+      }
+      @media(prefers-reduced-motion:reduce){
+        .envelope-button,.flap,.letter,.seal,.envelope-label,.tap-hint{
+          transition:none!important;
+          animation:none!important
+        }
+      }
+      /* MOBILE-ONLY PRESENTATION: narrow phone layout on every screen size */
+      html, body {
+        width:100%;
+        max-width:100%;
+        overflow-x:hidden;
+      }
+      body {
+        max-width:480px;
+        min-height:100vh;
+        margin:0 auto;
+        background:#f8f0e8;
+        box-shadow:0 0 42px rgba(30,0,8,.22);
+      }
+      .loader {
+        width:100%;
+        padding:24px 18px;
+      }
+      .loader-inner {
+        width:100%;
+        max-width:390px;
+      }
+      .envelope-button {
+        width:min(290px,78vw);
+        height:205px;
+      }
+      .site {
+        width:100%;
+        max-width:480px;
+        margin:0 auto;
+        overflow:hidden;
+      }
+      .topbar {
+        padding:15px 17px;
+        gap:8px;
+      }
+      .brand {
+        font-size:20px;
+      }
+      .nav-tag {
+        font-size:8px;
+        letter-spacing:.1em;
+      }
+      .hero {
+        min-height:650px;
+        padding:22px 12px 32px;
+      }
+      .hero:before {
+        inset:10px;
+      }
+      .hero-card {
+        width:100%;
+        min-height:630px;
+        padding:22px 12px;
+      }
+      .hero-copy {
+        padding:16px 9px 12px;
+      }
+      .hero-copy .arabic {
+        font-size:28px;
+      }
+      .hero h1 {
+        font-size:43px;
+      }
+      .names {
+        font-size:31px;
+      }
+      .intro {
+        font-size:15px;
+      }
+      .section {
+        padding:48px 17px;
+      }
+      .section-head {
+        margin-bottom:25px;
+      }
+      .section h2 {
+        font-size:37px;
+      }
+      .countdown {
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:10px;
+        margin-top:25px;
+      }
+      .timebox {
+        padding:17px 8px 14px;
+      }
+      .timebox strong {
+        font-size:38px;
+      }
+      .timebox span {
+        font-size:9px;
+      }
+      .date-layout {
+        display:flex;
+        flex-direction:column;
+        gap:25px;
+      }
+      .calendar {
+        max-width:100%;
+        transform:none;
+      }
+      .date-copy {
+        width:100%;
+      }
+      .date-copy h3 {
+        font-size:31px;
+      }
+      .location-card {
+        display:flex;
+        flex-direction:column;
+        width:100%;
+      }
+      .location-copy {
+        padding:25px 20px;
+      }
+      .location-copy h3 {
+        font-size:31px;
+      }
+      .map {
+        display:block;
+        height:280px;
+        min-height:280px;
+      }
+      .btn-row {
+        flex-direction:column;
+      }
+      .btn-row .btn, .btn {
+        width:100%;
+        min-height:44px;
+      }
+      /* Keep invitation messages and all cards in a single mobile column */
+      .greeting-grid, .greetings-grid, .message-grid, .cards-grid {
+        grid-template-columns:minmax(0,1fr) !important;
+      }
+      .greeting-card, .message-card {
+        width:100%;
+      }
+      footer {
+        padding-left:18px;
+        padding-right:18px;
+      }
+      @media (min-width:481px) {
+        body {
+          outline:1px solid rgba(189,152,88,.35);
+        }
+      }
+      @media (max-width:350px) {
+        .hero h1 {
+          font-size:37px;
+        }
+        .names {
+          font-size:27px;
+        }
+        .envelope-button {
+          height:185px;
+        }
+        .calendar-body {
+          padding:13px;
+        }
+        .weekdays, .days {
+          gap:3px;
+        }
+      }
+
+      /* ENVELOPE PRELOADER: isolated component; invitation content is unchanged. */
+      body.envelope-locked { overflow:hidden; }
+      #loader {
+        display:flex;
+        align-items:flex-start;
+        justify-content:center;
+        overflow-y:auto;
+        overflow-x:hidden;
+        width:100%;
+        padding:26px 16px;
+        background:
+          radial-gradient(ellipse at 50% 24%,rgba(193,69,89,.48) 0,transparent 50%),
+          radial-gradient(ellipse at 50% 110%,#3d0714 0,transparent 64%),
+          linear-gradient(135deg,#530a1d,#780d20 49%,#3a0712);
+        -webkit-overflow-scrolling:touch;
+      }
+      #loader .loader-inner {
+        margin:auto;
+        width:min(440px,100%);
+        padding:8px 0 2px;
+        flex-shrink:0;
+      }
+      #loader .loader-inner>.arabic {
+        color:#f2d9ab;
+        text-shadow:0 3px 12px rgba(27,0,10,.25);
+      }
+      #loader .loader-kicker {margin:0 0 6px;color:#f3d8a8;}
+      #loader .tap-title {margin:9px 0 10px;color:#fff9f0;}
+      #loader .tap-sub {font-size:10px;letter-spacing:.07em;}
+      #loader .tap-hint {
+        margin:18px auto 5px;
+        font-size:9px;
+        line-height:1.8;
+        letter-spacing:.15em;
+        color:#efd098;
+        animation:pulse 2.3s ease-in-out infinite;
+      }
+      #loader .tap-hint .hint-spark {font-size:13px;}
+
+      #openEnvelope.envelope-trigger {
+        --env-width:min(356px,86vw);
+        display:block;
+        position:relative;
+        width:var(--env-width);
+        height:auto;
+        padding:125px 0 0;
+        margin:0 auto 5px;
+        border:0;
+        outline-offset:6px;
+        background:transparent;
+        text-align:center;
+        line-height:normal;
+        color:inherit;
+        cursor:pointer;
+        -webkit-tap-highlight-color:transparent;
+        touch-action:manipulation;
+      }
+      #openEnvelope.envelope-trigger:focus-visible {
+        outline:2px solid #f7dca9;
+        border-radius:5px;
+      }
+      #openEnvelope .envelope-stage {
+        display:block;
+        position:relative;
+        width:100%;
+        aspect-ratio:1.78;
+        overflow:visible;
+        perspective:1100px;
+        transform:translateZ(0);
+        transition:transform .35s ease;
+      }
+      #openEnvelope:not(.is-unsealing):not(.is-opening):hover .envelope-stage,
+      #openEnvelope:not(.is-unsealing):not(.is-opening):focus-visible .envelope-stage {
+        transform:translateY(-4px);
+      }
+      #openEnvelope .envelope-ground-shadow {
+        display:block;
+        position:absolute;
+        left:7%;right:7%;bottom:-12px;
+        height:34px;border-radius:50%;
+        background:radial-gradient(ellipse at center,rgba(16,0,5,.63),rgba(19,0,9,.17) 65%,transparent 75%);
+        filter:blur(11px);
+      }
+      #openEnvelope .envelope-paper {
+        display:block;
+        position:absolute;
+        inset:0;
+        border:1px solid #d7b995;
+        border-radius:5px;
+        background:#e4ccb7;
+        box-shadow:
+          inset 0 0 0 1px rgba(255,255,255,.52),
+          0 1px 0 rgba(255,249,228,.85),
+          0 6px 0 rgba(80,31,25,.13),
+          0 17px 28px rgba(25,0,8,.31);
+        isolation:isolate;
+        overflow:visible;
+      }
+      #openEnvelope .env-paper-back {
+        position:absolute;
+        display:block;
+        inset:0;
+        z-index:1;
+        border-radius:4px;
+        background:
+          radial-gradient(ellipse at 28% 12%,rgba(255,255,255,.62),transparent 63%),
+          repeating-linear-gradient(32deg,transparent 0 4px,rgba(100,72,43,.018) 4px 5px),
+          linear-gradient(120deg,#fff7e9,#f1ddc7 84%,#e2c7ae);
+      }
+      #openEnvelope .env-mouth {
+        display:block;position:absolute;inset:0;z-index:2;
+        background:linear-gradient(180deg,#ae8e72 0%,#dec6ae 30%,#f0deca 66%,#f7e9d8 100%);
+        clip-path:polygon(0 0,100% 0,50% 73%);
+      }
+      #openEnvelope .env-card {
+        position:absolute;
+        z-index:3;
+        top:8px;left:12%;width:76%;height:calc(100% - 39px);
+        display:block;
+        overflow:visible;
+        border:1px solid #c6a164;
+        border-radius:2px;
+        background:
+          repeating-linear-gradient(0deg,rgba(126,84,54,.012) 0 1px,transparent 1px 4px),
+          linear-gradient(135deg,#fffdf7,#fbf0e0 90%);
+        box-shadow:0 5px 14px rgba(77,33,13,.13);
+        opacity:0;
+        transform:translateY(28px) scale(.975);
+        transition:transform .91s cubic-bezier(.22,.73,.18,1),opacity .35s ease,box-shadow .7s ease;
+      }
+      #openEnvelope .env-card-inner {
+        position:absolute;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        justify-content:center;
+        inset:7px;
+        border:1px solid rgba(177,141,88,.55);
+        color:#7f182b;
+        gap:3px;
+        text-shadow:0 1px 0 #fff;
+      }
+      #openEnvelope .env-card-flourish {font-size:24px;color:#c6a16d;line-height:1;}
+      #openEnvelope .env-card-kicker {font:600 8px Manrope,Arial,sans-serif;letter-spacing:.22em;color:#a37d51;}
+      #openEnvelope .env-card-names {font:600 clamp(20px,6vw,29px)/1.05 'Cormorant Garamond',Georgia,serif;white-space:nowrap;}
+      #openEnvelope .env-card-names i {color:#bb9360;font-weight:400;}
+      #openEnvelope .env-card-date {font:600 7px Manrope,Arial,sans-serif;letter-spacing:.2em;color:#9d7752;}
+      #openEnvelope .env-side {
+        position:absolute;inset:0;display:block;
+        pointer-events:none;
+      }
+      #openEnvelope .env-side-left {
+        z-index:4;
+        clip-path:polygon(0 0,56% 56%,0 100%);
+        background:
+          repeating-linear-gradient(40deg,transparent 0 6px,rgba(98,72,45,.014) 6px 7px),
+          linear-gradient(110deg,#fff8ec,#eedac5 83%,#dbc3ab);
+        filter:drop-shadow(2px 0 1px rgba(102,65,42,.12));
+      }
+      #openEnvelope .env-side-right {
+        z-index:5;
+        clip-path:polygon(100% 0,44% 56%,100% 100%);
+        background:
+          repeating-linear-gradient(132deg,transparent 0 5px,rgba(98,72,45,.014) 5px 6px),
+          linear-gradient(252deg,#fff9ee,#f1ddc7 83%,#dbc3ab);
+        filter:drop-shadow(-2px 0 1px rgba(102,65,42,.12));
+      }
+      #openEnvelope .env-bottom-pocket {
+        display:block;position:absolute;inset:0;z-index:6;
+        clip-path:polygon(0 100%,50% 36%,100% 100%);
+        background:
+          repeating-linear-gradient(40deg,transparent 0 5px,rgba(113,77,54,.016) 5px 6px),
+          linear-gradient(0deg,#e7cdb5 0%,#fff8ec 68%,#ecdbc9 100%);
+        filter:drop-shadow(0 -2px 2px rgba(97,60,42,.20));
+      }
+      #openEnvelope .env-address {
+        display:flex;flex-direction:column;align-items:center;justify-content:center;
+        position:absolute;z-index:7;
+        bottom:9px;left:10%;width:80%;height:58px;
+        pointer-events:none;text-shadow:0 1px rgba(255,255,255,.72);
+        text-align:center;
+      }
+      #openEnvelope .env-address-kicker {font:600 7px Manrope,Arial,sans-serif;letter-spacing:.29em;color:#af895b;}
+      #openEnvelope .env-address-names {font:600 clamp(23px,6vw,29px)/1.08 'Cormorant Garamond',Georgia,serif;color:#771527;white-space:nowrap;}
+      #openEnvelope .env-address-names i {font-weight:400;color:#b98f52;}
+      #openEnvelope .env-address-date {font:500 7px Manrope,Arial,sans-serif;letter-spacing:.21em;color:#957553;}
+      #openEnvelope .env-flap {
+        position:absolute;
+        z-index:8;
+        display:block;
+        top:0;left:0;width:100%;height:64%;
+        transform-origin:50% 0;
+        transform:rotateX(0deg);
+        clip-path:polygon(0 0,100% 0,50% 99.8%);
+        background:
+          repeating-linear-gradient(128deg,transparent 0 5px,rgba(110,73,42,.018) 5px 6px),
+          linear-gradient(155deg,#fffdf4 0%,#f6e9d8 58%,#e6ccb5 100%);
+        filter:drop-shadow(0 2px 2px rgba(90,55,35,.28));
+        backface-visibility:visible;
+        -webkit-backface-visibility:visible;
+        transition:transform .84s cubic-bezier(.25,.60,.16,1),filter .6s ease;
+        will-change:transform;
+      }
+      #openEnvelope .env-flap-seam {
+        display:block;position:absolute;inset:4px;
+        clip-path:polygon(0 0,100% 0,50% 99%);
+        background:linear-gradient(180deg,rgba(255,255,255,.22),transparent 72%);
+      }
+      #openEnvelope.is-opening .env-flap {
+        transform:rotateX(179deg);
+        filter:drop-shadow(0 -3px 2px rgba(90,55,35,.18));
+      }
+      #openEnvelope.is-folded .env-flap {z-index:2;}
+      #openEnvelope.is-opening .env-card {opacity:1;}
+      #openEnvelope.is-lifting .env-card {
+        transform:translateY(-99px) scale(1);
+        box-shadow:0 13px 22px rgba(75,24,13,.28);
+      }
+
+      #openEnvelope .env-round-seal {
+        position:absolute;
+        left:50%;
+        bottom:54px;
+        width:68px;
+        height:68px;
+        transform:translateX(-50%);
+        border-radius:50%;
+        z-index:12;
+        background:
+          radial-gradient(circle at 32% 28%, rgba(255,255,255,.26), rgba(255,255,255,0) 24%),
+          radial-gradient(circle at 50% 55%, #b1223b 0%, #8e1027 56%, #73101f 100%);
+        box-shadow:
+          inset 0 2px 4px rgba(255,255,255,.18),
+          inset 0 -4px 8px rgba(69,8,19,.28),
+          0 10px 18px rgba(74,11,24,.28);
+        display:grid;
+        place-items:center;
+        pointer-events:none;
+        transition:transform .5s cubic-bezier(.22,.7,.2,1), opacity .35s ease, filter .35s ease;
+        filter:drop-shadow(0 2px 0 rgba(255,244,224,.22));
+      }
+      #openEnvelope .env-round-seal::before,
+      #openEnvelope .env-round-seal::after {
+        content:"";
+        position:absolute;
+        inset:8px;
+        border-radius:50%;
+        border:1px solid rgba(255,232,199,.38);
+      }
+      #openEnvelope .env-round-seal::after {
+        inset:15px;
+        border-color:rgba(255,220,170,.22);
+      }
+      #openEnvelope .env-round-seal-mark {
+        font:600 26px/1 'Cormorant Garamond', Georgia, serif;
+        color:#f7dfb4;
+        text-shadow:0 1px 0 rgba(84,8,21,.35);
+        transform:translateY(-1px);
+      }
+      #openEnvelope:not(.is-unsealing):not(.is-opening):hover .env-round-seal,
+      #openEnvelope:not(.is-unsealing):not(.is-opening):focus-visible .env-round-seal {
+        transform:translateX(-50%) translateY(-2px) scale(1.03);
+      }
+      #openEnvelope.is-unsealing .env-round-seal {
+        transform:translateX(-50%) translateY(10px) scale(.22) rotate(-18deg);
+        opacity:0;
+      }
+      #openEnvelope.no-transition *,
+      #openEnvelope.no-transition *::before,
+      #openEnvelope.no-transition *::after {transition:none!important;animation:none!important;}
+
+      @media(max-width:420px) {
+        #openEnvelope.envelope-trigger {--env-width:min(343px,88vw);padding-top:121px;}
+        #openEnvelope .env-address-names {font-size:clamp(21px,7.1vw,27px);}
+        #openEnvelope .env-card-names {font-size:clamp(19px,6.8vw,25px);}
+        #loader .tap-title {font-size:clamp(33px,9vw,45px);}
+      }
+      @media(max-width:350px) {
+        #openEnvelope.envelope-trigger {padding-top:109px;}
+        #openEnvelope .env-address {bottom:7px;height:50px;}
+        #openEnvelope .env-address-names {font-size:21px;}
+        #openEnvelope .env-card-names {font-size:19px;}
+        #loader .tap-sub {font-size:9px;}
+        #loader .tap-hint {font-size:8px;letter-spacing:.09em;}
+      }
+      @media(max-height:650px) {
+        #loader {padding:15px 12px;}
+        #openEnvelope.envelope-trigger {padding-top:104px;}
+        #loader .tap-title {margin-top:3px;}
+        #loader .tap-hint {margin-top:11px;}
+      }
+      @media(prefers-reduced-motion:reduce) {
+        #openEnvelope *, #openEnvelope *::before, #openEnvelope *::after {transition-duration:.01ms!important;animation:none!important;}
+      }
+
+      /* -----------------------------
+         Readable sealed envelope
+         ----------------------------- */
+      #loader {
+        padding:clamp(18px,3.5vh,32px) 16px;
+        overscroll-behavior:contain;
+      }
+      #loader .loader-inner {
+        width:min(460px,100%);
+        padding:16px 0 20px;
+      }
+      #loader .loader-inner > .arabic {
+        line-height:1.65;
+        margin:0;
+      }
+      #loader .loader-kicker {
+        margin:2px auto 4px;
+        line-height:1.7;
+      }
+      #openEnvelope.envelope-trigger {
+        --env-width:min(354px,88vw);
+        padding-top:145px;
+        margin:0 auto 12px;
+      }
+      #openEnvelope .envelope-stage {
+        aspect-ratio:1.56;
+      }
+      #openEnvelope .env-address {
+        z-index:10;
+        width:76%;
+        left:12%;
+        bottom:8px;
+        height:60px;
+        padding:5px 8px;
+        gap:3px;
+        border-radius:3px;
+        border:1px solid rgba(195,157,106,.50);
+        background:linear-gradient(160deg,rgba(255,253,245,.95),rgba(245,226,207,.95));
+        box-shadow:0 3px 9px rgba(92,49,29,.11),inset 0 0 0 2px rgba(255,255,255,.46);
+        opacity:1;
+        transition:opacity .38s ease;
+      }
+      #openEnvelope .env-address-kicker {
+        color:#926b3e;
+        font-size:8px;
+        letter-spacing:.18em;
+        line-height:1.1;
+      }
+      #openEnvelope .env-address-names {
+        color:#75132a;
+        font-size:clamp(22px,6vw,28px);
+        line-height:1.08;
+        white-space:nowrap;
+      }
+      #openEnvelope .env-address-date {
+        color:#805a3b;
+        font-size:8px;
+        letter-spacing:.14em;
+        line-height:1.1;
+      }
+      #openEnvelope .env-round-seal {
+        width:64px;
+        height:64px;
+        bottom:auto;
+        top:53%;
+        transform:translate(-50%,-50%);
+        z-index:12;
+      }
+      #openEnvelope:not(.is-unsealing):not(.is-opening):hover .env-round-seal,
+      #openEnvelope:not(.is-unsealing):not(.is-opening):focus-visible .env-round-seal {
+        transform:translate(-50%,calc(-50% - 2px)) scale(1.03);
+      }
+      #openEnvelope.is-unsealing .env-round-seal {
+        transform:translate(-50%,-40%) scale(.2) rotate(-20deg);
+        opacity:0;
+      }
+      #openEnvelope .env-card {
+        top:9px;
+        left:11%;
+        width:78%;
+        height:calc(100% - 40px);
+      }
+      #openEnvelope .env-card-inner {
+        inset:7px;
+        padding:4px 5px;
+        gap:5px;
+      }
+      #openEnvelope .env-card-names {
+        font-size:clamp(20px,5.6vw,28px);
+        line-height:1.1;
+        white-space:normal;
+        text-wrap:balance;
+      }
+      #openEnvelope .env-card-kicker,
+      #openEnvelope .env-card-date {
+        letter-spacing:.13em;
+        line-height:1.25;
+      }
+      #openEnvelope.is-lifting .env-card {
+        transform:translateY(-116px) scale(1);
+      }
+      #loader .tap-title {
+        margin:14px auto 8px;
+        line-height:1.1;
+      }
+      #loader .tap-sub {
+        line-height:1.7;
+        margin:0 auto;
+        max-width:320px;
+      }
+      #loader .tap-hint {
+        margin:20px auto 6px;
+        padding:0 5px;
+        line-height:1.75;
+      }
+      @media (max-width:350px) {
+        #openEnvelope.envelope-trigger {
+          padding-top:124px;
+          margin-bottom:13px;
+        }
+        #openEnvelope .env-round-seal {
+          width:54px;
+          height:54px;
+          top:49%;
+        }
+        #openEnvelope .env-round-seal-mark {font-size:22px;}
+        #openEnvelope .env-address {
+          width:82%;
+          left:9%;
+          height:54px;
+          bottom:6px;
+          padding:4px 5px;
+          gap:2px;
+        }
+        #openEnvelope .env-address-kicker {font-size:7px;}
+        #openEnvelope .env-address-names {font-size:clamp(18px,6.7vw,22px);}
+        #openEnvelope .env-address-date {font-size:7px;}
+        #openEnvelope .env-card-names {font-size:clamp(18px,6vw,21px);}
+        #openEnvelope .env-card-inner {gap:3px;inset:6px;}
+        #openEnvelope.is-lifting .env-card {transform:translateY(-101px) scale(1);}
+        #loader .tap-title {font-size:clamp(32px,10vw,40px);}
+      }
+      @media (max-height:650px) {
+        #loader {padding:12px 14px;}
+        #loader .loader-inner {padding:9px 0 16px;}
+        #openEnvelope.envelope-trigger {padding-top:109px;}
+        #loader .tap-hint {margin-top:12px;}
+      }
+
+      /* Compact-height phones need extra clearance for the raised flap,
+         without pushing the invitation controls off screen. */
+      @media (max-height:650px) {
+        #openEnvelope.envelope-trigger {padding-top:136px;}
+        #openEnvelope .envelope-stage {aspect-ratio:1.80;}
+        #openEnvelope .env-round-seal {width:56px;height:56px;top:46%;}
+        #openEnvelope .env-round-seal-mark {font-size:23px;}
+        #openEnvelope .env-address {height:55px;bottom:6px;gap:2px;}
+        #openEnvelope .env-address-names {font-size:clamp(20px,6vw,26px);}
+        #openEnvelope.is-lifting .env-card {transform:translateY(-92px) scale(1);}
+        #loader .tap-title {margin:10px auto 7px;}
+        #loader .tap-hint {margin:12px auto 2px;}
+      }
+      @media (max-width:350px) and (max-height:650px) {
+        #openEnvelope.envelope-trigger {padding-top:132px;}
+        #openEnvelope .env-round-seal {width:52px;height:52px;top:43%;}
+        #openEnvelope .env-address {height:52px;bottom:5px;}
+        #openEnvelope .env-address-names {font-size:19px;}
+        #openEnvelope.is-lifting .env-card {transform:translateY(-84px) scale(1);}
+      }
+
+      @media (max-width:300px) and (max-height:650px) {
+        #openEnvelope .env-round-seal {top:39%;}
+      }
+
+      /* -----------------------------
+         Consistent margins and spacing
+         ----------------------------- */
+      .site {width:100%;max-width:480px;}
+      .topbar {
+        padding:18px clamp(16px,4.5vw,24px);
+        min-height:74px;
+      }
+      .topbar .brand {line-height:1.16;}
+      .nav-tag {max-width:48%;text-align:end;line-height:1.4;}
+      .hero {
+        padding:23px 14px 40px;
+        min-height:0;
+      }
+      .hero-card {
+        padding:28px 14px;
+        min-height:630px;
+      }
+      .hero-copy {
+        width:min(420px,100%);
+        padding:22px 13px 20px;
+      }
+      .hero-copy .intro {margin:10px auto 18px;line-height:1.65;}
+      .hero-copy .names {margin:9px 0;line-height:1.15;}
+      .hero-date {margin:13px 0 9px;}
+      .venue-mini {line-height:1.8;margin-top:8px;}
+      .section {
+        padding:60px 20px;
+      }
+      .section-head {
+        margin:0 auto 30px;
+        padding:0 4px;
+      }
+      .section-head p {line-height:1.8;}
+      .countdown {gap:12px;margin-top:26px;}
+      .timebox {padding:20px 10px 17px;}
+      .date-layout {gap:30px;}
+      .calendar-body {padding:20px 16px;}
+      .date-copy {padding:14px 5px 2px;}
+      .date-copy h3 {margin:10px 0 13px;}
+      .date-copy p {margin:9px 0 14px;line-height:1.8;}
+      .date-copy .btn-row {margin-top:18px;gap:11px;}
+      .location-card {margin:0 auto;}
+      .location-copy {padding:30px 24px;}
+      .location-copy p {margin:9px 0;}
+      .location-copy .btn-row {margin-top:18px;}
+      .greeting-section {padding:66px 20px;}
+      .greeting-grid {gap:20px;}
+      .greeting-card {padding:32px 25px;}
+      .greeting-card h3 {margin-bottom:15px;}
+      .greeting-card p {line-height:1.78;}
+      .greeting-signoff {margin-top:22px!important;}
+      .closing {padding:70px 22px 78px;}
+      .closing p {line-height:1.6;}
+      @media(max-width:390px) {
+        .topbar {padding:16px 15px;}
+        .hero {padding:19px 12px 34px;}
+        .hero-card {padding:20px 10px;min-height:610px;}
+        .hero-copy {padding:18px 9px;}
+        .section {padding:52px 17px;}
+        .section-head {margin-bottom:25px;}
+        .countdown {gap:10px;}
+        .timebox {padding:18px 8px 15px;}
+        .calendar-body {padding:17px 13px;}
+        .date-layout {gap:26px;}
+        .location-copy {padding:27px 20px;}
+        .greeting-section {padding:58px 17px;}
+        .greeting-card {padding:29px 21px;}
+        .closing {padding:60px 19px 68px;}
+      }
+
+      /* -----------------------------
+         Scroll-triggered card motion
+         ----------------------------- */
+      .reveal-card {
+        opacity:0;
+        transform:translate3d(0,25px,0) scale(.985);
+        transition:
+          opacity .75s cubic-bezier(.2,.75,.2,1),
+          transform .85s cubic-bezier(.2,.72,.2,1),
+          box-shadow .4s ease;
+        transition-delay:var(--reveal-delay,0ms);
+        will-change:opacity,transform;
+      }
+      .reveal-card.is-visible {
+        opacity:1;
+        transform:translate3d(0,0,0) scale(1);
+      }
+      @media (hover:hover) {
+        .greeting-card.is-visible:hover,
+        .calendar.is-visible:hover,
+        .location-card.is-visible:hover,
+        .timebox.is-visible:hover {
+          transform:translate3d(0,-5px,0) scale(1);
+          box-shadow:0 20px 36px rgba(65,14,28,.14);
+        }
+      }
+      .greeting-card {
+        transition:
+          opacity .75s cubic-bezier(.2,.75,.2,1),
+          transform .85s cubic-bezier(.2,.72,.2,1),
+          box-shadow .45s ease;
+      }
+      .greeting-card::after {
+        content:"";
+        position:absolute;
+        inset:0;
+        pointer-events:none;
+        background:linear-gradient(115deg,transparent 20%,rgba(255,255,255,.18) 46%,transparent 65%);
+        opacity:0;
+        transition:opacity .5s ease;
+      }
+      @media (hover:hover) {
+        .greeting-card:hover::after {opacity:1;}
+      }
+      @media (prefers-reduced-motion:reduce) {
+        .reveal-card,
+        .reveal-card.is-visible {
+          opacity:1!important;
+          transform:none!important;
+          transition:none!important;
+        }
+      }
+
+    </style>
+  </head>
+  <body>
+    <div class="loader" id="loader">
+      <div class="loader-inner">
+        <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+        <div class="loader-kicker">A celebration of love & faith</div><button
+          class="envelope-trigger"
+          id="openEnvelope"
+          type="button"
+          aria-label="Break the round envelope seal and open the Nikah invitation"
+        >
+          <span class="envelope-stage" aria-hidden="true">
+            <span class="envelope-ground-shadow"></span>
+            <span class="envelope-paper">
+              <span class="env-paper-back"></span>
+              <span class="env-mouth"></span>
+              <span class="env-card">
+                <span class="env-card-inner">
+                  <span class="env-card-flourish"></span>
+                  <span class="env-card-kicker">NIKAH INVITATION</span>
+                  <span class="env-card-names">Tasnim <i>&amp;</i> Shahadat</span>
+                  <span class="env-card-date">16 OCTOBER 2026</span>
+                </span>
+              </span>
+              <span class="env-side env-side-left"></span>
+              <span class="env-side env-side-right"></span>
+              <span class="env-bottom-pocket"></span>
+              <span class="env-address">
+                <span class="env-address-kicker">THE NIKAH OF</span>
+                <span class="env-address-names">Tasnim <i>&amp;</i> Shahadat</span>
+                <span class="env-address-date">16 · 10 · 2026</span>
+              </span>
+              <span class="env-flap">
+                <span class="env-flap-seam"></span>
+              </span>
+              <span class="env-round-seal" aria-hidden="true">
+                <span class="env-round-seal-mark"></span>
+              </span>
+            </span>
+          </span>
+        </button><h2 class="tap-title">A Beautiful Beginning</h2>
+        <div class="tap-sub">Tasnim Jahan Radia <span class="tap-amp">&amp;</span> Shahadat Hossain</div>
+        <div class="tap-hint" aria-live="polite"><span class="hint-spark" aria-hidden="true"></span> <span id="preloaderStatus">Touch the seal to open your invitation</span> <span class="hint-spark" aria-hidden="true"></span></div>
+      </div>
+    </div>
+    <div class="site" id="site">
+      <header class="topbar">
+        <div class="brand">Minhaz <span style="color:#bd9858">Weds</span> Radia </div>
+        <div class="nav-tag">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+      </header>
+      <main>
+        <section class="hero" id="invitation">
+          <div class="hero-card"><img class="art" id="cardBackground" alt="Original ivory embossed invitation artwork with red flowers and illustrated bride and groom">
+            <div class="art-shade">
+            </div>
+            <div class="hero-copy">
+              <div class="arabic">بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ</div>
+              <div class="ornament"></div>
+              <p class="eyebrow">Together with our families</p>
+              <h2>NIKAH INVITATION</h2>
+              <p class="intro">With hearts full of gratitude and joy, we invite you to witness the beginning of our forever.</p>
+              <div class="names">Tasnim Jahan Radia</div>
+              <div class="weds">Minhaz weds Radia</div>
+              <div class="ornament">—</div>
+              <div class="names">Shahadat Hossain</div>
+              <p class="hero-date">Friday · 16 October 2026</p>
+              <div class="venue-mini">Pitstop Restaurant<br>Chittagong, Bangladesh</div>
+              <p class="hero-note">Your presence will make our day truly memorable.</p>
+            </div>
+          </div>
+        </section>
+        <section class="section count-section">
+          <div class="section-head">
+            <div class="section-kicker">The countdown begins</div>
+            <h2>Until Our Special Day</h2>
+            <p>Every moment brings us closer to a beautiful new chapter.</p>
+          </div>
+          <div class="countdown" aria-label="Countdown to the Nikah">
+            <div class="timebox"><strong id="days">--</strong><span>Days</span></div>
+            <div class="timebox"><strong id="hours">--</strong><span>Hours</span></div>
+            <div class="timebox"><strong id="minutes">--</strong><span>Minutes</span></div>
+            <div class="timebox"><strong id="seconds">--</strong><span>Seconds</span></div>
+          </div>
+          <div class="count-note" id="countNote">Friday · 16 October 2026 · Chittagong</div>
+        </section>
+        <section class="section date-section">
+          <div class="section-head">
+            <div class="section-kicker">Mark your calendar</div>
+            <h2>A Date to Remember</h2>
+            <p>A little circle around a day that means the world to us.</p>
+          </div>
+          <div class="date-layout">
+            <div class="calendar" aria-label="October 2026 calendar">
+              <div class="calendar-top"><span>Our special date</span><strong>October 2026</strong></div>
+              <div class="calendar-body">
+                <div class="weekdays"><span>Sun</span><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span></div>
+                <div class="days" id="calendarDays">
+                </div>
+              </div>
+              <div class="calendar-bottom">Friday, the sixteenth · 16.10.2026</div>
+            </div>
+            <div class="date-copy">
+              <div class="arabic">الحمد لله</div>
+              <h3>Friday, 16 October</h3>
+              <p>Join us as we celebrate the sacred bond of Nikah and the start of a new journey together. We look forward to sharing this cherished moment with you.</p>
+              <div class="date-pill">✦ &nbsp; 16 OCT 2026 &nbsp; ✦</div>
+              <div class="btn-row"><button class="btn" id="saveDate">＋ Save the Date</button><button class="btn outline" id="replay">↻ Replay Invitation</button></div>
+            </div>
+          </div>
+        </section>
+        <section class="section location-section">
+          <div class="section-head">
+            <div class="section-kicker">Find your way to us</div>
+            <h2>Celebration Venue</h2>
+            <p>We would be delighted to welcome you in person.</p>
+          </div>
+          <div class="location-card">
+            <div class="location-copy">
+              <div class="arabic">أهلاً وسهلاً</div>
+              <h3>Pitstop Restaurant</h3>
+              <p>Chittagong, Bangladesh<br><span style="font-size:11px">Friday · 16 October 2026</span></p>
+              <p>We look forward to celebrating this beautiful day with you. Tap below for directions to the venue.</p>
+              <div class="btn-row"><a class="btn" href="https://www.google.com/maps/search/?api=1&query=Pitstop+Restaurant+Chittagong+Bangladesh" target="_blank" rel="noopener">⌖ Get Directions</a></div>
+            </div><iframe class="map" title="Map search for Pitstop Restaurant, Chittagong" loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Pitstop%20Restaurant%20Chittagong%20Bangladesh&t=&z=13&ie=UTF8&iwloc=&output=embed"></iframe></div>
+        </section>
+        <section class="greeting-section" aria-labelledby="greetingTitle">
+          <div class="section-head">
+            <div class="section-kicker">A message from our hearts</div>
+            <h2 id="greetingTitle">A Warm Invitation</h2>
+            <p>With gratitude to Allah and joy in our hearts, we would be honoured to share this special day with you.</p>
+          </div>
+          <div class="greeting-grid">
+            <article class="greeting-card">
+              <div class="arabic" lang="ar" dir="rtl">السَّلَامُ عَلَيْكُمْ</div>
+              <div class="greeting-icon"></div>
+              <div class="greeting-role">A message from the groom</div>
+              <h3>Shahadat Hossain</h3>
+              <p>Assalamu Alaikum. As I begin this beautiful new chapter of life, I pray that Allah fills our journey with love, patience, mercy, and barakah. It would mean so much to have you with us as we celebrate our Nikah. Your presence, duas, and blessings will make this day even more memorable.</p>
+              <p class="greeting-signoff">With respect and warm regards,<br><strong>Shahadat</strong></p>
+            </article>
+            <article class="greeting-card">
+              <div class="arabic" lang="ar" dir="rtl">بِكُلِّ حُبٍّ وَامْتِنَانٍ</div>
+              <div class="greeting-icon">
+              </div>
+              <div class="greeting-role">A message from the bride</div>
+              <h3>Tasnim Jahan Radia</h3>
+              <p>With a heart full of happiness and gratitude, I warmly invite you to share in one of the most precious moments of my life. May this new beginning be blessed with kindness, understanding, and endless joy. Please join us on our Nikah day and keep us in your prayers as we start our journey together.</p>
+              <p class="greeting-signoff">With love and heartfelt duas,<br><strong>Radia</strong></p>
+            </article>
+          </div>
+        </section>
+        <section class="closing">
+          <div class="arabic">بَارَكَ اللَّهُ لَكُمَا وَبَارَكَ عَلَيْكُمَا</div>
+          <div class="ornament">
+          </div>
+          <h2>With Love & Blessings</h2>
+          <p>May Allah bless this union with love, mercy, and endless happiness.</p>
+          <div class="names">Minhaz & Radia</div>
+          <p style="font-size:11px;letter-spacing:.16em;text-transform:uppercase">We can’t wait to celebrate with you</p>
+        </section>
+      </main>
+      <footer class="footer">You're Invited on · 16 October 2026</footer>
+    </div>
+    <script>
+      const backgroundImage = 'image/download.jpg';
+      document.getElementById('cardBackground').src=backgroundImage;
+      // Deterministic seal-break, flap-open, card-lift animation. Replay clears all pending stages.
+      const loader = document.getElementById('loader');
+      const envelope = document.getElementById('openEnvelope');
+      const site = document.getElementById('site');
+      const status = document.getElementById('preloaderStatus');
+      const initialHint = 'Touch the seal to open your invitation';
+      const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+      const pendingTimers = new Set();
+      let isOpening = false;
+
+
+      // Scroll reveal is activated only after the preloader has opened.
+      // Content remains accessible even when observers are unavailable.
+      const revealTargets = [...document.querySelectorAll(
+        '.hero-card, .timebox, .calendar, .date-copy, .location-card, .greeting-card'
+      )];
+      let revealObserver = null;
+      function setupCardAnimations() {
+        if (reduceMotion.matches || !('IntersectionObserver' in window)) return;
+        revealTargets.forEach((card, i) => {
+          card.classList.add('reveal-card');
+          card.style.setProperty('--reveal-delay', `${(i % 4) * 90}ms`);
+        });
+      }
+      function activateCardAnimations() {
+        if (revealObserver) revealObserver.disconnect();
+        if (reduceMotion.matches || !('IntersectionObserver' in window)) {
+          revealTargets.forEach(card => card.classList.add('is-visible'));
+          return;
+        }
+        revealObserver = new IntersectionObserver(entries => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('is-visible');
+              revealObserver.unobserve(entry.target);
+            }
+          }
+        }, {threshold:.1,rootMargin:'0px 0px -5% 0px'});
+        revealTargets.forEach(card => revealObserver.observe(card));
+      }
+      function resetCardAnimations() {
+        if (revealObserver) revealObserver.disconnect();
+        revealTargets.forEach(card => card.classList.remove('is-visible'));
+      }
+
+      setupCardAnimations();
+
+      site.inert = true;
+      site.setAttribute('aria-hidden', 'true');
+      document.body.classList.add('envelope-locked');
+
+      function schedulePhase(fn, ms) {
+        const timer = window.setTimeout(() => {
+          pendingTimers.delete(timer);
+          fn();
+        }, ms);
+        pendingTimers.add(timer);
+      }
+      function clearPhases() {
+        for (const timer of pendingTimers) window.clearTimeout(timer);
+        pendingTimers.clear();
+      }
+      function revealInvitation() {
+        loader.classList.add('hide');
+        loader.setAttribute('aria-hidden', 'true');
+        site.inert = false;
+        site.removeAttribute('aria-hidden');
+        site.classList.add('show');
+        activateCardAnimations();
+        document.body.classList.remove('envelope-locked');
+        window.scrollTo(0, 0);
+        schedulePhase(() => {
+          loader.style.display = 'none';
+          envelope.removeAttribute('aria-busy');
+        }, reduceMotion.matches ? 30 : 850);
+      }
+      function openInvitation() {
+        if (isOpening) return;
+        isOpening = true;
+        envelope.setAttribute('aria-busy', 'true');
+        envelope.classList.add('is-unsealing');
+        status.textContent = 'Breaking the seal…';
+
+        if (reduceMotion.matches) {
+          envelope.classList.add('is-opening', 'is-folded', 'is-lifting');
+          schedulePhase(revealInvitation, 40);
+          return;
+        }
+        schedulePhase(() => {
+          envelope.classList.add('is-opening');
+          status.textContent = 'Opening the envelope…';
+        }, 480);
+        schedulePhase(() => envelope.classList.add('is-folded'), 1300);
+        schedulePhase(() => {
+          envelope.classList.add('is-lifting');
+          status.textContent = 'Your invitation is ready';
+        }, 1340);
+        schedulePhase(revealInvitation, 2250);
+      }
+
+      // A semantic button gives reliable touch, mouse, Enter and Space activation.
+      envelope.addEventListener('click', openInvitation);
+      document.getElementById('replay').addEventListener('click', () => {
+        clearPhases();
+        resetCardAnimations();
+        isOpening = false;
+        envelope.classList.add('no-transition');
+        envelope.classList.remove('is-unsealing', 'is-opening', 'is-folded', 'is-lifting');
+        envelope.removeAttribute('aria-busy');
+        status.textContent = initialHint;
+        loader.style.display = '';
+        loader.removeAttribute('aria-hidden');
+        loader.classList.remove('hide');
+        site.classList.remove('show');
+        site.inert = true;
+        site.setAttribute('aria-hidden', 'true');
+        document.body.classList.add('envelope-locked');
+        window.scrollTo(0, 0);
+        // Flush the reset before allowing the next animation.
+        void envelope.offsetWidth;
+        window.requestAnimationFrame(() => envelope.classList.remove('no-transition'));
+        envelope.focus({preventScroll:true});
+      });
+      // October 2026 starts on Thursday. Render a real month grid and highlight Friday the 16th.
+      const daysEl=document.getElementById('calendarDays');
+      const offset=4,monthDays=31;
+      for(let i=0;i<offset;i++){
+        const e=document.createElement('span');
+        e.className='blank';
+        e.textContent='';
+        daysEl.appendChild(e)
+      }
+      for(let d=1;d<=monthDays;d++){
+        const e=document.createElement('span');
+        e.textContent=d;
+        if(d===16)e.className='chosen';
+        daysEl.appendChild(e)
+      }
+      // Countdown uses Bangladesh local time (UTC+06:00); event time was not provided, so it counts to midnight at the start of the date.
+      const target=new Date('2026-10-16T00:00:00+06:00').getTime();
+      function updateCountdown(){
+        let diff=target-Date.now();
+        if(diff<=0){
+          ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).textContent='00');
+          document.getElementById('countNote').textContent='Today is the special day — 16 October 2026';
+          return
+        }
+        const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),m=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+        document.getElementById('days').textContent=String(d).padStart(2,'0');
+        document.getElementById('hours').textContent=String(h).padStart(2,'0');
+        document.getElementById('minutes').textContent=String(m).padStart(2,'0');
+        document.getElementById('seconds').textContent=String(s).padStart(2,'0')
+      }
+      updateCountdown();
+      setInterval(updateCountdown,1000);
+      document.getElementById('saveDate').addEventListener('click',()=>{
+        const eventText=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Minhaz weds Radia//Nikah Invitation//EN','CALSCALE:GREGORIAN','BEGIN:VEVENT','UID:minhaz-radia-nikah-20261016@example.com','DTSTAMP:20261011T080000Z','DTSTART;VALUE=DATE:20261016','DTEND;VALUE=DATE:20261017','SUMMARY:Nikah - Minhaz weds Radia','LOCATION:Pitstop Restaurant, Chittagong, Bangladesh','DESCRIPTION:Nikah celebration of Tasnim Jahan Radia and Shahadat Hossain.','END:VEVENT','END:VCALENDAR'].join('\r\n');
+        const blob=new Blob([eventText],{
+          type:'text/calendar;charset=utf-8'
+        });
+        const url=URL.createObjectURL(blob);
+        const a=document.createElement('a');
+        a.href=url;
+        a.download='Minhaz-weds-Radia.ics';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url)
+      });
+      for(let i=0;i<14;i++){
+        const p=document.createElement('span');
+        p.className='petal';
+        p.style.left=Math.random()*100+'vw';
+        p.style.animationDuration=(9+Math.random()*11)+'s';
+        p.style.animationDelay=(-Math.random()*16)+'s';
+        p.style.transform='scale('+(0.5+Math.random()*.8)+')';
+        document.body.appendChild(p)
+      }
+    </script>
+  </body>
+</html>
